@@ -11,17 +11,21 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import  dotenv_values
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+ENV_PATH = os.path.join(BASE_DIR.parent, '.env')
+env = dotenv_values(ENV_PATH)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--)@e02+wu5$2gt%0tmkj_d^+vy2#=116#*k7*boi3&3=!1infy'
+SECRET_KEY = env.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,10 +79,21 @@ WSGI_APPLICATION = 'opinion_scrapper.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env.get('DB_NAME'),
+        'USER': env.get('DB_USER'),
+        'PASSWORD': env.get('DB_PASS'),
+        'HOST': env.get('DB_HOST', '127.0.0.1'),
+        'PORT': env.get('DB_PORT', '5432'),
     }
 }
 

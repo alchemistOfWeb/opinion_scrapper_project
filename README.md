@@ -72,7 +72,7 @@ pip install -r requirements.txt
 ### 2 Секретный ключ
 <a name="create_secret_key"></a> 
 
-Для начала скопируйте файл .env.example и уберите строку `.exmaple` из названия копии (оставьте только `.env`)
+Для начала скопируйте файл .env.example и уберите строку `.example` из названия копии (оставьте только `.env`)
 
 Создайте секретный ключ и добавьте в настройки соответствующими командами:
 ```bash
@@ -86,17 +86,16 @@ dotenv set SECRET_KEY 'getted_secret_key' # сюда нужно вставить
 ### 3 Настройка базы данных
 <a name="setup_db"></a> 
 
-Установите настройки для вашей бд в `kanban_board_project\settings.py`.
-По умолчание для бд стоят след. настройки. Их можно не изменять, тогда в дирекотории с manage.py будет создан файл db.sqlite3 в качестве базы данных.
+Установите настройки для вашей бд в `.env` файле. Ниже приведён пример и названия параметров, которые можно использовать. 
 ```py
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DB_NAME='opinion_scrapper'
+DB_USER='admin'
+DB_PASS='admin'
+DB_HOST='127.0.0.1'
+DB_PORT='5432'
 ```
-для подключения к др. базам данных смотрите https://docs.djangoproject.com/en/3.1/ref/databases/
+По умолчанию используется движок `postgress`, для его изменения измените значение словаря `DATABASES` в `opinion_scrapper/settings.py`.
+Посмотреть корректные названия движков для подключения к др. базам данных можно на https://docs.djangoproject.com/en/3.1/ref/databases/
 
 Затем вы можете заимпортировать базу данных созданную мной с помощью средств джанго.
 Для этого исполните следующую команду в терминале из директории `kanban_board_project/`:

@@ -71,7 +71,9 @@ pip install -r requirements.txt
 ```
 
 Далее установите и настройте geckodriver (нужно для работы selenium).
-После его установки укажите путь в файле settings.py в переменную `GECKODRIVER_PATH`.
+скачать можно отсюда, выбрав архив подходящий под вашу ОС https://github.com/mozilla/geckodriver/releases. После скачивания, распакуйте
+После его установки укажите путь в файле `opinion_scrapper/opinion_scrapper/settings.py` в переменную `GECKODRIVER_PATH`.
+
 
 ### 2 Секретный ключ
 <a name="create_secret_key"></a> 

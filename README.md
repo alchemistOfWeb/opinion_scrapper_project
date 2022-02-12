@@ -59,6 +59,7 @@
 Для начала установите python.
 Допустимы версии от 3.6 до 3.9
 
+
 ```bash
 cd нужный каталог
 git clone https://github.com/alchemistOfWeb/kanban_board_bkend.git
@@ -68,6 +69,9 @@ source <venv>/bin/activate # if u use linux
 venv\Scripts\activate # if u use windows platform
 pip install -r requirements.txt
 ```
+
+Далее установите и настройте geckodriver (нужно для работы selenium).
+После его установки укажите путь в файле settings.py в переменную `GECKODRIVER_PATH`.
 
 ### 2 Секретный ключ
 <a name="create_secret_key"></a> 
@@ -97,19 +101,6 @@ DB_PORT='5432'
 По умолчанию используется движок `postgress`, для его изменения измените значение словаря `DATABASES` в `opinion_scrapper/settings.py`.
 Посмотреть корректные названия движков для подключения к др. базам данных можно на https://docs.djangoproject.com/en/3.1/ref/databases/
 
-Затем вы можете заимпортировать базу данных созданную мной с помощью средств джанго.
-Для этого исполните следующую команду в терминале из директории `kanban_board_project/`:
-```bash
-python manage.py loaddata db.json
-```
-
-Также в таком случае вам не придётся создавать суперюзера, те. вы можете пропустить шаги 4 и 6.
-Вот имя и пароль для доступа к админке
-```txt
-username: nikita
-password: nikita
-```
-
 ### 4 Миграции
 <a name="migrations"></a> 
 
@@ -124,7 +115,7 @@ python manage.py migrate
 ### 5. Предварительный парсинг всех продуктов 
 <a name="scrap_sitemap"></a> 
 
-из каталога с `manage.py` выполните следующую команду
+из каталога с `manage.py` выполните следующую команду. Будет выполняться несколько часов.
 ```bash
 python manage.py scrape_products
 ```
@@ -153,3 +144,4 @@ pas: ********** # придумайте, например admin
 ```bash
 python manage.py runserver
 ```
+

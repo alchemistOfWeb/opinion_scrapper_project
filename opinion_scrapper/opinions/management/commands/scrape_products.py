@@ -1,7 +1,22 @@
 from typing import Any, Optional
 from django.core.management.base import BaseCommand, CommandError, CommandParser
-from .product_scraper import lookfor_links, get_driver
+from .product_scraper import lookfor_links
 from django.conf import settings
+from selenium import webdriver
+
+
+def get_driver(driver_path):
+    options = webdriver.FirefoxOptions()
+    options.headless = True        
+    USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0" 
+    # todo: move it^ into special options file
+    options.set_preference('general.useragent.override', USER_AGENT)
+    driver = webdriver.Firefox(
+        driver_path,
+        options=options
+    )
+
+    return driver
 
 
 class Command(BaseCommand):
@@ -25,10 +40,8 @@ class Command(BaseCommand):
         finally:
             driver.close()
             driver.quit()
-            msg = "\n___________closing selenium manager!_____________\n"
+            msg = "closing selenium manager!"
             self.stdout.write(self.style.WARNING(msg))            
 
         # print(sitemap[:100])
-        
-
         

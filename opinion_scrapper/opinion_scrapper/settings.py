@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'opinion_scrapper.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env.get('DB_NAME'),
+        'NAME': env.get('DB_NAME'), # opinions_parser
         'USER': env.get('DB_USER'),
         'PASSWORD': env.get('DB_PASS'),
         'HOST': env.get('DB_HOST', '127.0.0.1'),

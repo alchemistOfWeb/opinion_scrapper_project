@@ -140,4 +140,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 print(BASE_DIR)
 
+# Options for Selenium
 GECKODRIVER_PATH = "D:\\projects\\django_projects\\opinions_parser\\opinion_scrapper\\geckodriver-v0.30.0-win64\\"
+
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0" 

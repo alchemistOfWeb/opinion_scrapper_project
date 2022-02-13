@@ -8,9 +8,8 @@ from selenium import webdriver
 def get_driver(driver_path):
     options = webdriver.FirefoxOptions()
     options.headless = True        
-    USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0" 
-    # todo: move it^ into special options file
-    options.set_preference('general.useragent.override', USER_AGENT)
+    
+    options.set_preference('general.useragent.override', settings.USER_AGENT)
     driver = webdriver.Firefox(
         driver_path,
         options=options
@@ -27,12 +26,12 @@ class Command(BaseCommand):
     
     def handle(self, *args: Any, **options: Any) -> Optional[str]:
         self.stdout.write(self.style.SUCCESS('Hello!'))
-        host = "https://www.dns-shop.ru" # rename to site_root
-        root_url = "https://www.dns-shop.ru/catalog" # rename to full_url or replace on uri
+        host = "https://www.dns-shop.ru"
+        root_url = "https://www.dns-shop.ru/catalog"
 
         try:
-            driver = get_driver(settings.GECKODRIVER_PATH) # perform the function
-            sitemap = lookfor_links(driver, root_url, host) # add driver parameter
+            driver = get_driver(settings.GECKODRIVER_PATH)
+            sitemap = lookfor_links(driver, root_url, host)
         except KeyboardInterrupt:
             self.stdout.write(self.style.SUCCESS('Scrapping was interrupted!'))
         except Exception as ex:
@@ -43,5 +42,4 @@ class Command(BaseCommand):
             msg = "closing selenium manager!"
             self.stdout.write(self.style.WARNING(msg))            
 
-        # print(sitemap[:100])
         

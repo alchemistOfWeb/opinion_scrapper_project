@@ -77,7 +77,6 @@ def lookfor_links(driver, current_url, host, sitemap_list=[], page_number=None, 
     
     driver.get(request_url)
     html = driver.page_source
-    # html = SeleniumManager.get_instance().get_source(request_url)
     soup = BeautifulSoup(html, 'lxml')
 
     bs_products_node = search_products_node(soup)
@@ -115,20 +114,3 @@ def lookfor_links(driver, current_url, host, sitemap_list=[], page_number=None, 
                           page_number, last_page_number)
 
     return sitemap_list
-
-
-# if __name__ == '__main__':
-#     host = "https://www.dns-shop.ru" # rename to site_root
-#     root_url = "https://www.dns-shop.ru/catalog" # rename to full_url or replace on uri
-
-#     try:
-#         driver = get_driver() # perform the function
-#         sitemap = lookfor_links(driver, root_url, host) # add driver parameter
-#     except Exception as ex:
-#         print(ex)
-#     finally:
-#         driver.close()
-#         driver.quit()
-#         print("\n___________closing selenium manager!_____________\n")
-
-#     print(sitemap[:100])

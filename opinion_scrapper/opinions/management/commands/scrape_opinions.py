@@ -15,9 +15,9 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS('Start parsing of opinions!'))
 
         try:
-            driver = get_driver(settings.GECKODRIVER_PATH) # perform the function
-            parse_limit = 100
-            scrape_opinions(driver, parse_limit)
+            driver = get_driver(settings.GECKODRIVER_PATH)
+            # parse_limit = 100
+            scrape_opinions(driver)
         except KeyboardInterrupt:
             self.stdout.write(self.style.WARNING('Scrapping was interrupted!'))
         except Exception as ex:

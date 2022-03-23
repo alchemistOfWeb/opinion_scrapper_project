@@ -71,8 +71,8 @@
 
 ```bash
 cd нужный каталог
-git clone https://github.com/alchemistOfWeb/kanban_board_bkend.git
-cd kanban_board_bkend
+git clone https://github.com/alchemistOfWeb/opinion_scrapper_project.git
+cd opinion_scrapper_project
 python -m venv venv
 source <venv>/bin/activate # if u use linux
 venv\Scripts\activate # if u use windows platform
